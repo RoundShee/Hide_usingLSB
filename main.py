@@ -44,7 +44,13 @@ def hide_in_bmp(file_bmp, file_secret):
         print(file_secret + ' 文件未找到!\n')
         return 0
     for i in raw_wait_hide.read():  # 一次8位
-        for j in bin(i)[2:]:  # 一次一位
+        never_give_up = bin(i)[2:]  # 成功解决低于8bit的byte问题
+        num = len(never_give_up)
+        for k in range(8):  # 一次一位
+            if k < 8-num:
+                j = 0
+            else:
+                j = never_give_up[k-8+num]
             x, y, d = p_t_pix_pos(pointer_pic, img_shape)
             pix_value = img[x][y][d]
             if (not int(j)) and (not (pix_value % 2)):  # 密文0,pic偶数不变
@@ -82,13 +88,9 @@ def hide_in_bmp(file_bmp, file_secret):
         else:
             img[x][y][d] = pix_value
         # print(str(img[x][y][d])+' changed'+str(i))   # test
-    cv.imwrite("source/hidden_pic.bmp", img)
+    cv.imwrite("resource/hidden_pic.bmp", img)
     print('完成隐藏!')
     return 1
-
-
-# 测试隐藏功能可用
-# hide_in_bmp("source/raw_picture.bmp", "source/secret.txt")
 
 
 def seek_in_bmp(file_bmp):
@@ -114,7 +116,7 @@ def seek_in_bmp(file_bmp):
             end_of_secret = end_of_secret + '0'
     end_of_secret = int(end_of_secret, 2)       # 将01字符串以二进制转换为int型
     # 创建结果文件
-    file = open('extract.bin', 'wb')
+    file = open('resource/extract.bin', 'wb')
     for pointer_pix in range(25, end_of_secret, 8):  # 写入只能以byte形式进行
         byte_secret = ''
         for i in range(8):  # i为偏移
@@ -130,5 +132,7 @@ def seek_in_bmp(file_bmp):
     print('提取完成')
 
 
+# 测试隐藏功能可用
+hide_in_bmp("resource/raw_picture.bmp", "resource/test2.png")
 # 测试seek代码
-seek_in_bmp("source/hidden_pic.bmp")
+seek_in_bmp("resource/hidden_pic.bmp")
