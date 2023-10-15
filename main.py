@@ -133,6 +133,6 @@ def seek_in_bmp(file_bmp):
 
 
 # 测试隐藏功能可用
-hide_in_bmp("resource/raw_picture.bmp", "resource/test2.png")
+hide_in_bmp("resource/raw_picture.bmp", "resource/secret.zip")
 # 测试seek代码
 seek_in_bmp("resource/hidden_pic.bmp")
