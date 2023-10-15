@@ -20,4 +20,3 @@
   使用seek将指定目录./resource/bmp中有秘密信息的文件进行提取
   输出加密过的密文./resource/temp.bin
   decrypt利用密码解密temp.bin输出到./resource/out/
-  
