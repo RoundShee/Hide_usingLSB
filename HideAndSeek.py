@@ -88,7 +88,8 @@ def hide_in_bmp(file_bmp, file_secret):
         else:
             img[x][y][d] = pix_value
         # print(str(img[x][y][d])+' changed'+str(i))   # test
-    cv.imwrite("resource/hidden_pic.bmp", img)
+    new_name = file_bmp[0:-4] + '_Hi.bmp'
+    cv.imwrite(new_name, img)
     print('完成隐藏!')
     return 1
 
@@ -133,6 +134,6 @@ def seek_in_bmp(file_bmp):
 
 
 # 测试隐藏功能可用
-hide_in_bmp("resource/raw_picture.bmp", "resource/secret.zip")
+# hide_in_bmp("resource/bmp/raw_picture.bmp", "resource/encrypted.bin")
 # 测试seek代码
-seek_in_bmp("resource/hidden_pic.bmp")
+# seek_in_bmp("resource/hidden_pic.bmp")
