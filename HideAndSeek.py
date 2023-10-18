@@ -136,4 +136,4 @@ def seek_in_bmp(file_bmp):
 # 测试隐藏功能可用
 # hide_in_bmp("resource/bmp/raw_picture.bmp", "resource/encrypted.bin")
 # 测试seek代码
-# seek_in_bmp("resource/hidden_pic.bmp")
+# seek_in_bmp("resource/bmp/hidden_pic.bmp")
