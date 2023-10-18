@@ -4,12 +4,6 @@ from tkinter import ttk
 from crypt import out_decrypt, col_encrypt
 from HideAndSeek import hide_in_bmp, seek_in_bmp
 
-# 界面根基
-root = tkinter.Tk()
-root.title('Encrypt Hide && Seek Decrypt')
-root.geometry('854x480')
-root.resizable(False, False)
-
 
 def frame_select(frame_list, n):
     """功能区显示部分"""
@@ -28,22 +22,6 @@ def find_files(directory):
         for file in files:
             file_list.append(file)
     return file_list
-
-
-# 功能区框架列表
-frame_list = []
-for i in range(3):
-    frame_i = tkinter.Frame(root, height=451, width=854)
-    frame_list.append(frame_i)
-# 顶部按钮
-top_button_0 = tkinter.ttk.Button(root, text='加密隐藏', command=lambda: frame_select(frame_list, 0))
-top_button_0.place(x=10, y=0, anchor=tkinter.NW)
-
-top_button_1 = tkinter.ttk.Button(root, text='提取解密', command=lambda: frame_select(frame_list, 1))
-top_button_1.place(x=97, y=0, anchor=tkinter.NW)
-
-top_button_2 = tkinter.ttk.Button(root, text='帮助', command=lambda: frame_select(frame_list, 2))
-top_button_2.place(x=184, y=0, anchor=tkinter.NW)
 
 
 def frame0_gene(frame, refresh=0):
@@ -86,10 +64,10 @@ def frame0_gene(frame, refresh=0):
     entry.place(x=700, y=420, anchor=tkinter.NW)
 
     # 刷新按钮
-    refresh_button = tkinter.ttk.Button(frame_list[0], text='刷新', command=lambda: frame0_gene(frame, refresh=1))
+    refresh_button = tkinter.ttk.Button(frame, text='刷新', command=lambda: frame0_gene(frame, refresh=1))
     refresh_button.place(x=750, y=0, anchor=tkinter.NW)
     # 生成
-    gene_button = tkinter.ttk.Button(frame_list[0], text='生成',
+    gene_button = tkinter.ttk.Button(frame, text='生成',
                                      command=lambda: gene_bmp(bmp_files[int(which_one.get())],
                                                               secret_files, fill_boxs, entry_passwd.get()))
     gene_button.place(x=20, y=420, anchor=tkinter.NW)
@@ -133,7 +111,7 @@ def frame1_gene(frame, refresh=0):
     label_2 = tkinter.Label(frame, text='输入自定义密码:')
     label_2.place(x=600, y=420, anchor=tkinter.NW)
     # 刷新按钮
-    refresh_button = tkinter.ttk.Button(frame_list[1], text='刷新', command=lambda: frame1_gene(frame, refresh=1))
+    refresh_button = tkinter.ttk.Button(frame, text='刷新', command=lambda: frame1_gene(frame, refresh=1))
     refresh_button.place(x=750, y=0, anchor=tkinter.NW)
     # bmp单选框
     bmp_files = find_files("./resource/bmp")
@@ -149,7 +127,7 @@ def frame1_gene(frame, refresh=0):
     entry_passwd.set('')
     entry.place(x=700, y=420, anchor=tkinter.NW)
     # 解密
-    decode_button = tkinter.ttk.Button(frame_list[1], text='解析',
+    decode_button = tkinter.ttk.Button(frame, text='解析',
                                        command=lambda: decode_bmp(bmp_files[int(which_one.get())], entry_passwd.get()))
     decode_button.place(x=20, y=420, anchor=tkinter.NW)
 
@@ -163,11 +141,3 @@ def decode_bmp(file_name, passwd):
         out_decrypt()
     else:
         out_decrypt(passwd=passwd)
-
-
-# 框架内容初始化-显示第一页
-frame0_gene(frame_list[0])
-frame1_gene(frame_list[1])
-frame_select(frame_list, 0)
-root.mainloop()
-
