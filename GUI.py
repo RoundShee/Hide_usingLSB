@@ -141,3 +141,4 @@ def decode_bmp(file_name, passwd):
         out_decrypt()
     else:
         out_decrypt(passwd=passwd)
+    os.remove('./resource/temp.bin')
