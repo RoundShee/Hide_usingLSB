@@ -116,6 +116,11 @@ def seek_in_bmp(file_bmp):
         else:
             end_of_secret = end_of_secret + '0'
     end_of_secret = int(end_of_secret, 2)       # 将01字符串以二进制转换为int型
+    # 指针检测
+    x, y, d = img_shape
+    if end_of_secret > x * y * d:
+        print('预提取文件错误\n')
+        return 0
     # 创建结果文件
     file = open('./resource/temp.bin', 'wb')
     for pointer_pix in range(25, end_of_secret, 8):  # 写入只能以byte形式进行
@@ -131,6 +136,7 @@ def seek_in_bmp(file_bmp):
         file.write(se_hex.to_bytes(1, 'little'))
     file.close()
     print('提取完成')
+    return 1
 
 
 # 测试隐藏功能可用

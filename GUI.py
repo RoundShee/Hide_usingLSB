@@ -92,9 +92,13 @@ def gene_bmp(bmp_name, secret_list, secret_list_of_bool, passwd):
         col_encrypt(list_name, passwd)
     # 进行隐藏
     path = "resource/bmp/" + bmp_name
-    hide_in_bmp(path, "./resource/encrypted.bin")
+    return_code = hide_in_bmp(path, "./resource/encrypted.bin")
     # 删除过程文件
     os.remove("./resource/encrypted.bin")
+    if return_code:
+        os.system("explorer.exe %s" % os.path.realpath('./resource/bmp/'))
+    else:
+        print('处理失败：请检查错误输出')
 
 
 def frame1_gene(frame, refresh=0):
@@ -134,11 +138,15 @@ def frame1_gene(frame, refresh=0):
 
 def decode_bmp(file_name, passwd):
     """将选中文件作为含密文载体进行解析"""
-    path = "resource/bmp/" + file_name
+    path = "./resource/bmp/" + file_name
     seek_in_bmp(path)
     # resource/temp.bin
     if passwd is None:
-        out_decrypt()
+        re_code = out_decrypt()
     else:
-        out_decrypt(passwd=passwd)
-    os.remove('./resource/temp.bin')
+        re_code = out_decrypt(passwd=passwd)
+    if re_code:
+        os.remove('./resource/temp.bin')
+        os.system("explorer.exe %s" % os.path.realpath('./resource/out/'))
+    else:
+        print('失败！')
