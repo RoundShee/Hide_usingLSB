@@ -1,4 +1,4 @@
-from GUI import frame_select, frame0_gene, frame1_gene
+from GUI import frame_select, frame0_gene, frame1_gene, frame2_gene
 import tkinter
 from tkinter import ttk
 
@@ -28,6 +28,7 @@ def main():
     # 框架内容初始化-显示第一页
     frame0_gene(frame_list[0])
     frame1_gene(frame_list[1])
+    frame2_gene(frame_list[2])
     frame_select(frame_list, 0)
     root.mainloop()
 

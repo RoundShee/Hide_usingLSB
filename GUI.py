@@ -150,3 +150,15 @@ def decode_bmp(file_name, passwd):
         os.system("explorer.exe %s" % os.path.realpath('./resource/out/'))
     else:
         print('失败！')
+
+
+def frame2_gene(frame):
+    label = tkinter.Label(frame, text='文件都在程序工作目录的resource中\n'
+                                      '加密隐藏选一个bmp图和众多密文\n'
+                                      '隐藏文件不能过大,或者选择更大的图\n'
+                                      '解密注意选择正确的使用本程序加密的图像\n'
+                                      '密码不填使用默认密码加密\n'
+                                      '\n'
+                                      '\n'
+                                      'Github@RoundShee\n')
+    label.place(x=427, y=240, anchor=tkinter.CENTER)
