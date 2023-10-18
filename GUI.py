@@ -154,6 +154,8 @@ def decode_bmp(file_name, passwd):
 
 def frame2_gene(frame):
     label = tkinter.Label(frame, text='文件都在程序工作目录的resource中\n'
+                                      '要处理的图像放置在resource/bmp中\n'
+                                      '密文放置在resource/secret中\n'
                                       '加密隐藏选一个bmp图和众多密文\n'
                                       '隐藏文件不能过大,或者选择更大的图\n'
                                       '解密注意选择正确的使用本程序加密的图像\n'
