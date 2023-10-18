@@ -117,7 +117,7 @@ def seek_in_bmp(file_bmp):
             end_of_secret = end_of_secret + '0'
     end_of_secret = int(end_of_secret, 2)       # 将01字符串以二进制转换为int型
     # 创建结果文件
-    file = open('resource/extract.bin', 'wb')
+    file = open('./resource/temp.bin', 'wb')
     for pointer_pix in range(25, end_of_secret, 8):  # 写入只能以byte形式进行
         byte_secret = ''
         for i in range(8):  # i为偏移
